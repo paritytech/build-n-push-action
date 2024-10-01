@@ -19,7 +19,7 @@ inputs:
   image_name:
     description: "Image name"
     required: false
-    default: ${{ github.repository }}
+    default: ${{ github.event.repository.name }}
   dockerfile_path:
     description: "Dockerfile path"
     required: false
