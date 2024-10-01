@@ -8,7 +8,7 @@ To use this action in your workflow, add the following step to your GitHub Actio
 
 ```yaml
 - name: Build and Push Docker Image
-  uses: ./.github/actions/build
+  uses: paritytech/build-n-push-action@main
   with:
     push_to_registry: "true" # or 'false' if you do not wish to push (for example if you testing build without pushing to registry)
     registry_user: ${{ secrets.REGISTRY_USER }}
