@@ -30,6 +30,9 @@ inputs:
     default: |
       VCS_REF=${{ github.sha }}
       BUILD_DATE=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
+  extra_args:
+    description: "Extra Buildah Args"
+    required: false
   context:
     description: "Build context"
     required: false
@@ -58,6 +61,7 @@ runs:
       with:
         format: 'docker'
         build-args: ${{ inputs.build_args }}
+        extra-args: ${{ inputs.extra_args }}
         image: ${{ inputs.image_name }}
         tags: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
         context: ${{ inputs.context }}
