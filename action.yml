@@ -20,6 +20,10 @@ inputs:
     description: "Image name"
     required: false
     default: ${{ github.event.repository.name }}
+  image_tags:
+    description: "Image tags, space separated"
+    required: false
+    default: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
   dockerfile_path:
     description: "Dockerfile path"
     required: false
