@@ -15,6 +15,7 @@ To use this action in your workflow, add the following step to your GitHub Actio
     registry_password: ${{ secrets.REGISTRY_PASSWORD }}
     registry_url: "registry.parity.io/parity-internal/" # optional, defaults to 'registry.parity.io/parity-internal/'
     image_name: "your-image-name" # optional, defaults to GitHub repository
+    image_tags: "latest v1.3.0"
     dockerfile_path: "./path/to/Dockerfile" # optional, defaults to './Dockerfile'
     build_args: | # optional
       ARG1=value1
@@ -31,8 +32,10 @@ To use this action in your workflow, add the following step to your GitHub Actio
 | `registry_password` | Registry password (if push_to_registry is 'true').                   | No       | N/A                                                                      |
 | `registry_url`      | Registry url.                                                        | No       | 'registry.parity.io/parity-internal/'                                    |
 | `image_name`        | Image name.                                                          | No       | GitHub repository name                                                   |
+| `image_tags`        | Image tags.                                                          | No       | Either tag github.ref_name if triggered by tag or github.sha (space separated) |
 | `dockerfile_path`   | Dockerfile path.                                                     | No       | './Dockerfile'                                                           |
 | `build_args`        | Build arguments. Default includes VCS_REF and BUILD_DATE.            | No       | VCS_REF=${{ github.sha }}<br>BUILD_DATE=$(date -u '+%Y-%m-%dT%H:%M:%SZ') |
+| `extra_args`        | Extra Build arguments.                                               | No       | Like --target layer_1                                                    |
 | `context`           | Build context.                                                       | No       | '.'                                                                      |
 
 ## Outputs

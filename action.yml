@@ -20,6 +20,10 @@ inputs:
     description: "Image name"
     required: false
     default: ${{ github.event.repository.name }}
+  image_tags:
+    description: "Image tags, space separated"
+    required: false
+    default: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
   dockerfile_path:
     description: "Dockerfile path"
     required: false
@@ -63,7 +67,7 @@ runs:
         build-args: ${{ inputs.build_args }}
         extra-args: ${{ inputs.extra_args }}
         image: ${{ inputs.image_name }}
-        tags: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
+        tags: ${{ inputs.image_tags }}
         context: ${{ inputs.context }}
         containerfiles: |
           ${{ inputs.dockerfile_path }}
